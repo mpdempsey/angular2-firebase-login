@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar >
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="menu" (click)="presentPopover($event)"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Welcome To The Application</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="test">
+<div class="test"> 
+
+  <section class="card">
+    <h1 >Enter Today's Expense </h1>
+    <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit(purchaseForm.value)">
+
+      <input type="text" name="purchaseItem" id="purchaseItem" placeholder="purchase" formControlName="purchaseItem">
+     
+      <input type="number" name="purchaseCost" id="purchaseCost" placeholder="purchase cost" formControlName="purchaseCost">
+      
+<div>
+      <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
+</div>
+    </form>
+
+  </section>
+  </div>
+</ion-content>
+
+
+ <!--
+<ion-content padding>
+  <section class="card login">
+  
+    <ion-list class="card meetings cf">
+
+
+      
+  <ion-item class="text" *ngFor="let item of items | async">
+      {{item.expense}} 
+    {{item.date | date: 'dd/mm/yyyy'}}
+    {{item.amount}}
+    
+      </ion-item>
+    </ion-list>
+
+  </section>
+</ion-content>
+
+-->
