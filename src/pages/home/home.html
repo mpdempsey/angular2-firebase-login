@@ -11,42 +11,19 @@
 
 
 <ion-content padding class="appBackground">
+  <section class="card">
+    <h1>Enter Today's Expense </h1>
+   
+    <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit(purchaseForm.value)">
 
-    <section class="card">
-      <h1>Enter Today's Expense </h1>
-      <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit(purchaseForm.value)">
+      <input type="text" name="purchaseItem" id="purchaseItem" placeholder="purchase" formControlName="purchaseItem">
+      <input type="number" name="purchaseCost" id="purchaseCost" placeholder="purchase cost" formControlName="purchaseCost">
+      <div class="error" *ngIf="!purchaseForm.controls['purchaseCost'].valid && purchaseForm.controls['purchaseCost'].touched">Please Enter a valid number</div>
+      <div>
+        <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
+      </div>
 
-        <input type="text" name="purchaseItem" id="purchaseItem" placeholder="purchase" formControlName="purchaseItem">
-
-        <input type="number" name="purchaseCost" id="purchaseCost" placeholder="purchase cost" formControlName="purchaseCost">
-
-        <div>
-          <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
-        </div>
-      </form>
-
-    </section>
-
-</ion-content>
-
-
-<!--
-<ion-content padding>
-  <section class="card login">
-  
-    <ion-list class="card meetings cf">
-
-
-      
-  <ion-item class="text" *ngFor="let item of items | async">
-      {{item.expense}} 
-    {{item.date | date: 'dd/mm/yyyy'}}
-    {{item.amount}}
-    
-      </ion-item>
-    </ion-list>
-
+    </form>
   </section>
 </ion-content>
 
--->

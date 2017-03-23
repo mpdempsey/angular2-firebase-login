@@ -16,7 +16,7 @@ export class LoginPage {
   loginForm;
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPagePage');
+   
   }
 
   ngOnInit() {
@@ -44,7 +44,6 @@ export class LoginPage {
   }
 
   onSubmit(loginForm) {
-    console.log(loginForm);
     this.auth.loginWithEmailAndPassword(loginForm);
     this.navCtrl.push(HomePage);
   }

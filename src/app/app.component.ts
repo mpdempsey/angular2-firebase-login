@@ -8,6 +8,7 @@ import { LoginPage} from '../pages/login-page/login-page';
 import { RegisterPage} from '../pages/register/register';
 import { MenuPopoverPage} from '../pages/menu-popover/menu-popover';
 import { UserInfoPage} from '../pages/user-info/user-info';
+import { CustomValidators} from 'ng2-validation';
 @Component({
   templateUrl: 'app.html'
 })
