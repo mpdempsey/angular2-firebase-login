@@ -1,10 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentMenuPopover($event)">
+      <button class="navbarButton" ion-button icon-only (click)="presentMenuPopover($event)">
         <ion-icon name="menu" (click)="presentMenuPopover($event)"></ion-icon>
       </button>
-    </ion-buttons>
+  
+  </ion-buttons>
     <ion-title>Welcome To The Application</ion-title>
   </ion-navbar>
 </ion-header>
@@ -24,6 +25,29 @@
       </div>
 
     </form>
+
+    <ion-card (tap)="tapEvent($event)">
+  <ion-item>
+    Tapped: {{tap}} times
+  </ion-item>
+</ion-card>
+<ion-card (press)="pressEvent($event)">
+    <ion-item>
+      Pressed: {{press}} times
+    </ion-item>
+  </ion-card>
+
+  <ion-card (pan)="panEvent($event)">
+    <ion-item>
+      Panned: {{pan}} times
+    </ion-item>
+  </ion-card>
+
+  <ion-card (swipe)="swipeEvent($event)">
+    <ion-item>
+      Swiped: {{swipe}} times
+    </ion-item>
+</ion-card>
   </section>
 </ion-content>
 
