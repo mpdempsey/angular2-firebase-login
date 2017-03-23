@@ -28,7 +28,7 @@ ngOnInit() {
       purchaseCost: ['', [Validators.required, Validators.minLength(8)]]
     })
   }
-  presentPopover(myEvent) {
+  presentMenuPopover(myEvent) {
     let popover = this.popoverCtrl.create(MenuPopoverPage);
     popover.present({
       ev: myEvent
