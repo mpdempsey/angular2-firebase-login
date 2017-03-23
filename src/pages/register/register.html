@@ -7,36 +7,27 @@
 </ion-header>
 
 <ion-content padding>
-  <section class="card login" >
+  <section class="card login">
 
-  <div class="textintro">
+    <div class="textintro">
       <h1>Register</h1>
       <p>To access site features</p>
       <p class="message" ng-show="message">{{ message }}</p>
-</div>
+    </div>
+=
+    <form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm.value)">
+      <input type="text" name="FirstName" id="FirstName" placeholder="FirstName" formControlName="firstName">
+      <div *ngIf="regForm.controls.firstName.errors?.pattern">Name is Invalid </div>
+      <input type="text" name="LastName" id="LastName" placeholder="LastName" formControlName="lastName">
+      <div *ngIf="regForm.controls.lastName.errors?.pattern">Last Name is Invalid </div>
+      <input type="email" name="email" id="email" placeholder="email" formControlName="email">
+      <div class="error" *ngIf="regForm.controls.email.errors?.pattern">Please enter a valid email address </div>
+      <input type="password" name="password" id="password" placeholder="password" formControlName="password">
+      <div class="error" *ngIf="regForm.controls.password.hasError('minlength')">Password must be at least 8 characters long</div>
 
-
-
-<form [formGroup]="regForm"
- (ngSubmit)="onSubmit(regForm.value)">
-<input type="text" name="FirstName" id="FirstName" placeholder="FirstName" formControlName="firstName">
-<div *ngIf="regForm.controls.firstName.errors?.pattern">Name is Invalid </div>
-
-
-<input type="text" name="LastName" id="LastName" placeholder="LastName" formControlName="lastName">
-<div *ngIf="regForm.controls.lastName.errors?.pattern">Last Name is Invalid </div>
-
-
-<input type="email" name="email" id="email" placeholder="email" formControlName="email">
-<div class="error" *ngIf="regForm.controls.email.errors?.pattern">Please enter a valid email address </div>
-
-
-<input type="password" name="password" id="password" placeholder="password" formControlName="password">
-<div class="error" *ngIf="regForm.controls.password.hasError('minlength')">Password must be at least 8 characters long</div>
-
-<div>
-<button type="submit" [disabled]="!regForm.valid"> Save </button>
-</div>
-</form>
+      <div>
+        <button type="submit" [disabled]="!regForm.valid"> Save </button>
+      </div>
+    </form>
   </section>
 </ion-content>

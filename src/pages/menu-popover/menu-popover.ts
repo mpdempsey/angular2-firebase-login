@@ -26,7 +26,7 @@ export class MenuPopoverPage {
   }
 
   logoutClicked() { 
-    console.log("logout clicked");
+    
      this.viewCtrl.dismiss();
      this.auth.logout().then((user) => {
       console.log("logged out successfully " + user);

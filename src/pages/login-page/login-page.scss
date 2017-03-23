@@ -1,11 +1,12 @@
 page-login-page {
 /* apply a natural box layout model to all elements, but allowing components to change */
-$cardBorderColor: #EFECCA;
-$cardButtonColor: #EFECCA;
-$h1Color: #EFECCA;
-$cardBackground : #002F2F;
-$appBackground: #046380;
-
+$cardBorderColor: #FEB41C;
+$cardButtonColor: #5E7C88;
+$h1Color: #FEB41C;
+$cardBackground : #363F45;
+$appBackground: #24221F;
+$toolbarBackground: #363F45;
+$toolbarTitleColor: #FEB41C;
 html {
   box-sizing: border-box;
 }
@@ -121,6 +122,12 @@ height: 100%;
   background: $cardButtonColor;
 }
 
+.toolbar-title{
+  color: $toolbarTitleColor;
+}
+.toolbar-background {
+  background-color: $toolbarBackground;
+}
 
 
 @media all and (max-width: 400px) {
@@ -132,7 +139,7 @@ height: 100%;
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', serif;
   font-weight: 100;
-  text-shadow: 1px 1px rgb(255,255,255);
+  text-shadow: 1px 1px rgb(0,0,0);
 }
 
 header {
