@@ -13,41 +13,19 @@
 
 <ion-content padding class="appBackground">
   <section class="card">
-    <h1>Enter Today's Expense </h1>
+    <h1> Your Code begins Here' </h1>
    
-    <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit(purchaseForm.value)">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
 
-      <input type="text" name="purchaseItem" id="purchaseItem" placeholder="purchase" formControlName="purchaseItem">
-      <input type="number" name="purchaseCost" id="purchaseCost" placeholder="purchase cost" formControlName="purchaseCost">
-      <div class="error" *ngIf="!purchaseForm.controls['purchaseCost'].valid && purchaseForm.controls['purchaseCost'].touched">Please Enter a valid number</div>
+      <input type="text" name="myFormInput1" id="myFormInput1" placeholder="my form placeholder" formControlName="myFormInput1">
+      <input type="number" name="myFormInput2" id="myFormInput2" placeholder="my form " formControlName="myFormInput2">
+      <div class="error" *ngIf="!myForm.controls['myFormInput2'].valid && myForm.controls['myFormInput2'].touched">Please Enter a valid number</div>
       <div>
-        <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
+        <button ion-button class="cardButton" type="submit" [disabled]="!myForm.valid"> Submit Purchase </button>
       </div>
 
     </form>
 
-    <ion-card (tap)="tapEvent($event)">
-  <ion-item>
-    Tapped: {{tap}} times
-  </ion-item>
-</ion-card>
-<ion-card (press)="pressEvent($event)">
-    <ion-item>
-      Pressed: {{press}} times
-    </ion-item>
-  </ion-card>
-
-  <ion-card (pan)="panEvent($event)">
-    <ion-item>
-      Panned: {{pan}} times
-    </ion-item>
-  </ion-card>
-
-  <ion-card (swipe)="swipeEvent($event)">
-    <ion-item>
-      Swiped: {{swipe}} times
-    </ion-item>
-</ion-card>
   </section>
 </ion-content>
 
