@@ -10,9 +10,10 @@ import { Firebase} from '@firebase';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
-
+import { CustomValidators, CustomFormsModule} from 'ng2-validation';
 import { MenuPopoverPage} from '../pages/menu-popover/menu-popover';
 import { UserInfoPage} from '../pages/user-info/user-info';
+import { IonicStorageModule} from '@ionic/storage';
 export const firebaseConfig = {
   apiKey: "AIzaSyCwvvdtk0_IWsvjGneqBRMVomKkx8pVkWU",
     authDomain: "ambitiousdevelopment-65e11.firebaseapp.com",
@@ -37,9 +38,11 @@ export const firebaseAuthConfig = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CustomFormsModule
 
     
   ],

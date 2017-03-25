@@ -15,6 +15,7 @@ import { UserInfoPage} from '../../pages/user-info/user-info';
   templateUrl: 'menu-popover.html'
 })
 export class MenuPopoverPage {
+ 
 
   constructor(public navCtrl: NavController,public viewCtrl: ViewController,private auth: AuthService) {}
 
@@ -26,7 +27,7 @@ export class MenuPopoverPage {
   }
 
   logoutClicked() { 
-    console.log("logout clicked");
+    
      this.viewCtrl.dismiss();
      this.auth.logout().then((user) => {
       console.log("logged out successfully " + user);

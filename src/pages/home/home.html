@@ -1,53 +1,53 @@
 <ion-header>
-  <ion-navbar >
+  <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentPopover($event)">
-        <ion-icon name="menu" (click)="presentPopover($event)"></ion-icon>
+      <button class="navbarButton" ion-button icon-only (click)="presentMenuPopover($event)">
+        <ion-icon name="menu" (click)="presentMenuPopover($event)"></ion-icon>
       </button>
-    </ion-buttons>
+  
+  </ion-buttons>
     <ion-title>Welcome To The Application</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding class="test">
-<div class="test"> 
-
+<ion-content padding class="appBackground">
   <section class="card">
-    <h1 >Enter Today's Expense </h1>
+    <h1>Enter Today's Expense </h1>
+   
     <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit(purchaseForm.value)">
 
       <input type="text" name="purchaseItem" id="purchaseItem" placeholder="purchase" formControlName="purchaseItem">
-     
       <input type="number" name="purchaseCost" id="purchaseCost" placeholder="purchase cost" formControlName="purchaseCost">
-      
-<div>
-      <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
-</div>
+      <div class="error" *ngIf="!purchaseForm.controls['purchaseCost'].valid && purchaseForm.controls['purchaseCost'].touched">Please Enter a valid number</div>
+      <div>
+        <button ion-button class="cardButton" type="submit" [disabled]="!purchaseForm.valid"> Submit Purchase </button>
+      </div>
+
     </form>
 
+    <ion-card (tap)="tapEvent($event)">
+  <ion-item>
+    Tapped: {{tap}} times
+  </ion-item>
+</ion-card>
+<ion-card (press)="pressEvent($event)">
+    <ion-item>
+      Pressed: {{press}} times
+    </ion-item>
+  </ion-card>
+
+  <ion-card (pan)="panEvent($event)">
+    <ion-item>
+      Panned: {{pan}} times
+    </ion-item>
+  </ion-card>
+
+  <ion-card (swipe)="swipeEvent($event)">
+    <ion-item>
+      Swiped: {{swipe}} times
+    </ion-item>
+</ion-card>
   </section>
-  </div>
 </ion-content>
 
-
- <!--
-<ion-content padding>
-  <section class="card login">
-  
-    <ion-list class="card meetings cf">
-
-
-      
-  <ion-item class="text" *ngFor="let item of items | async">
-      {{item.expense}} 
-    {{item.date | date: 'dd/mm/yyyy'}}
-    {{item.amount}}
-    
-      </ion-item>
-    </ion-list>
-
-  </section>
-</ion-content>
-
--->
