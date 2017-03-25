@@ -15,6 +15,7 @@ import { UserInfoPage} from '../../pages/user-info/user-info';
   templateUrl: 'menu-popover.html'
 })
 export class MenuPopoverPage {
+ 
 
   constructor(public navCtrl: NavController,public viewCtrl: ViewController,private auth: AuthService) {}
 
