@@ -16,19 +16,12 @@
 <ion-content padding>
 
 
-  <ion-card class="swipe-box"  
-        *ngFor="let avatar of avatars; let idx=index"
-        (swipeleft)="swipe(idx, $event.type)" (swiperight)="swipe(idx, $event.type)" 
-        [class.visible]="avatar.visible" [class.hidden]="!avatar.visible">
+  <ion-card >
       
         <div>
-            <a class="header">{{avatar.name}}</a>
-            <a class="header">Hazard: {{avatar.description}} </a>
-            <a class="header">Location of Hazard: {{avatar.location}}</a>
-            <a class="header">Action Taken: {{avatar.actionTaken}}</a>
-            <a class="header">Additional Action Required: {{avatar.additionalAction}}</a>
-            <a class="header">Suggested Solution: {{avatar.suggestedSolution}}</a>
-            <a class="header">Threat Level: {{avatar.threatLevel}}</a>
+            <a class="header">UserName: </a>
+            <a class="header">User Email: </a>
+       
         </div>
   </ion-card>
  
