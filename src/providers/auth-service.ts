@@ -62,16 +62,20 @@ export class AuthService {
 
 
   loginWithEmailAndPassword(testForm: any) {
-    console.log("loginWithEmailAndPassword has been called");
 
-
-    return this.af.auth.login({
-      email: testForm.userEmail,
-      password: testForm.userPassword
-    }).then((user) => {
+    var emailString = String(testForm.email);
+    var passwordString = String(testForm.password);
+    var cred = {
+      email: emailString,
+      password: passwordString
+    };
+    const config = { provider: AuthProviders.Password, method: AuthMethods.Password };
+    return this.af.auth.login(
+      cred, config
+    ).then((user) => {
       console.log(user);
     }).catch((error) => {
-      console.log("error" + error);
+      console.log("error in login" + error);
     })
 
 

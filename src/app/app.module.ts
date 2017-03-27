@@ -22,8 +22,8 @@ export const firebaseConfig = {
     messagingSenderId: "64002168371"
 }
 export const firebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password
+  method: AuthMethods.Password,
+  provider: AuthProviders.Password
 }
 
 @NgModule({

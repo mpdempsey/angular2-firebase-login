@@ -4,7 +4,7 @@ import { HomePage } from '../../pages/home/home'
 import { RegisterPage } from '../../pages/register/register'
 import { AuthService } from '../../providers/auth-service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-login-page',
   templateUrl: 'login-page.html'
@@ -16,76 +16,42 @@ export class LoginPage {
 
   constructor(public _navCtrl: NavController, private _storage: Storage, private _formBuilder: FormBuilder, public _navParams: NavParams, public _auth: AuthService) {
 
-
-  
-  }
-
-   
-  ionViewDidLoad() {
-   
   }
 
   ngOnInit() {
-    var emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i; 
-    
+    var emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
-      this._storage.ready().then(() => {
-       var  emailFromStorage;
-       var  passwordFromStorage;
-//this._storage.clear();
-       // set a key/value
-      // _storage.set('name', 'Max');
+    this.prepopulateUserInfoFromStorage();
 
-       // Or to get a key/value pair
-       this._storage.get('email').then((val) => {
-         emailFromStorage = val;
-         console.log('Your email is', emailFromStorage);
-       })
-       this._storage.get('password').then((val) => {
-          passwordFromStorage = val;
-         console.log('Your password is', passwordFromStorage);
-     
-     if(emailFromStorage ==null || passwordFromStorage == null) { //The user should just login
-        console.log('EmailFromStorage or passwordFromStorage equals null');
-       }
-
-       if(emailFromStorage !=null && passwordFromStorage != null){
-         console.log('both values are available login automatically');
-     (<FormControl> this.loginForm.controls['email']).setValue(emailFromStorage); 
-     (<FormControl> this.loginForm.controls['password']).setValue(passwordFromStorage);
-     
-      }
-    
-
-  if (emailFromStorage == null) {
-        console.log(emailFromStorage + ' == null');
-    }
-
-    if (emailFromStorage === null) {
-        console.log(emailFromStorage + ' === null');
-    }
-
-    if (typeof emailFromStorage === 'undefined') {
-        console.log(emailFromStorage + ' is undefined');
-    }
-
-    })
-     });
-
-    
   }
 
-getUserInfoFromStorage(){
+  prepopulateUserInfoFromStorage() {
+    this.getUserInfoFromStorage().then(info => this.prepopulateUserInfo(info));
+  }
 
-}
 
-setUserInfoToStorage(){
 
-}
+  getUserInfoFromStorage() {
+    return this._storage.ready()
+      .then(() => Promise.all([this._storage.get('email'), this._storage.get('password')])
+        .then(array => {
+          return { email: array[0], password: array[1] };
+        }));
+  }
+
+  prepopulateUserInfo(userInfo: any) {
+    if (userInfo.email != null && userInfo.password != null) {
+      (<FormControl>this.loginForm.controls['email']).setValue(userInfo.email);
+      (<FormControl>this.loginForm.controls['password']).setValue(userInfo.password);
+    }
+  }
+
+
 
   registerNewUser(): void {
     this._navCtrl.push(RegisterPage);
@@ -102,16 +68,18 @@ setUserInfoToStorage(){
   }
 
   onSubmit(loginForm) {
+    console.log("in onsubmit loginform data is " + loginForm.email + " and " + loginForm.password );
     this._auth.loginWithEmailAndPassword(loginForm);
-    this._storage.set('email', loginForm.email);
-    this._storage.set('password', loginForm.password);
-
+    this.setUserEmailAndPassword(loginForm).then(()=>{
     this._navCtrl.push(HomePage);
-
+    });
   }
 
-   check(x, name) {
-   
-}
+  setUserEmailAndPassword(loginForm) {
+
+    return Promise.all([this._storage.set('email', loginForm.email), this._storage.set('password', loginForm.password)]);
+      
+  }
+
 
 }
